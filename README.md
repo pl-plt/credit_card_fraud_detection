@@ -25,6 +25,7 @@ Ce projet implémente un pipeline complet de Machine Learning distribué avec **
 │   ├── cc_fraud_spark.ipynb       # Pipeline interactif complet (Dev)
 │   └── model_comparison_viz.ipynb # Visualisation des résultats et comparaison
 ├── src/
+│   ├── import.py             # Téléchargement du dataset depuis Kaggle
 │   ├── preprocess.py         # Nettoyage et préparation des données
 │   ├── train.py              # Entraînement des modèles (LR, RF, GBT)
 │   └── score.py              # Scoring et évaluation batch
@@ -73,14 +74,19 @@ bash run.sh
 ### 2. Mode Manuel (Étape par étape)
 Si jamais vous souhaitez exécuter chaque étape séparément voici les commandes a utiliser :
 
+**A. Téléchargement du Dataset**
+Télécharge le dataset depuis Kaggle si nécessaire.
+```bash
+python src/import.py --output dataset/raw
+```
 
-**A. Preprocessing**
+**B. Preprocessing**
 Convertit le CSV en Parquet et sépare les jeux de données.
 ```bash
 python src/preprocess.py --input dataset/raw/creditcard.csv --output dataset/processed --train-ratio 0.8
 ```
 
-**B. Entraînement**
+**C. Entraînement**
 Entraîner différents modèles. Les modèles sont sauvegardés dans `models/`.
 
 *Logistic Regression :*
@@ -98,7 +104,7 @@ python src/train.py --train dataset/processed/train --test dataset/processed/tes
 python src/train.py --train dataset/processed/train --test dataset/processed/test --model-dir models/gbt_pipeline --model-type gbt
 ```
 
-**C. Scoring**
+**D. Scoring**
 Appliquer le modèle sur le jeu de test et générer des scores de probabilité.
 ```bash
 python src/score.py --model-dir models/gbt_pipeline --input dataset/processed/test --output dataset/processed/scores_gbt --threshold 0.5

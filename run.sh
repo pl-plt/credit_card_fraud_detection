@@ -11,6 +11,9 @@ pip install -r requirements.txt
 # 1) (Windows) Assurez-vous que winutils est accessible et que HADOOP_HOME est défini
 setx HADOOP_HOME "C:\\hadoop-3.3.6"    # adapter si besoin
 
+# 1.5) Téléchargement du dataset (si nécessaire)
+echo -e "\033[1;34m========== Telechargement du dataset ==========\033[0m"
+python src/import.py --output dataset/raw
 
 # 2) Préprocess: lecture CSV -> parquet + split train/test
 echo -e "\033[1;34m========== Preprocessing des donnees ==========\033[0m"
