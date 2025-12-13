@@ -25,11 +25,14 @@ Ce projet implémente un pipeline complet de Machine Learning distribué avec **
 │   ├── cc_fraud_spark.ipynb       # Pipeline interactif complet (Dev)
 │   └── model_comparison_viz.ipynb # Visualisation des résultats et comparaison
 ├── src/
-│   ├── import.py             # Téléchargement du dataset depuis Kaggle
+│   ├── import_dataset.py             # Téléchargement du dataset depuis Kaggle
 │   ├── preprocess.py         # Nettoyage et préparation des données
 │   ├── train.py              # Entraînement des modèles (LR, RF, GBT)
 │   └── score.py              # Scoring et évaluation batch
-├── run.sh                    # Script d'exécution complet (Demo)
+├── run.sh                    # Script d'exécution complet
+├── build.sh                  # Script d'installation des dépendances
+├── clean.sh                  # Script de nettoyage des fichiers générés
+├── Makefile                  # Commandes Make pour build/run/clean
 ├── requirements.txt          # Dépendances Python
 └── README.md
 ```
@@ -44,14 +47,10 @@ Ce projet implémente un pipeline complet de Machine Learning distribué avec **
 ### Installation
 
 1. **Cloner le dépôt**
-2. **Créer l'environnement virtuel**
+2. **Créer l'environnement virtuel et installer ses dépendances**
    ```bash
-   conda create -n spark python=3.13 -y
-   conda activate spark
-   pip install -r requirements.txt
+   make build
    ```
-3. **Configuration Windows (Important)**
-   Définissez la variable d'environnement `HADOOP_HOME` vers votre dossier contenant `bin/winutils.exe` (ex: `C:\hadoop-3.3.6`).
 
 ## Dépendances Principales
 
@@ -65,10 +64,15 @@ Basé sur `requirements.txt` :
 ## Utilisation
 
 ### 1. Mode Automatique
-Le script `run.sh` exécute tout le pipeline : préparation, entraînement des 3 modèles et scoring avec le meilleur modèle.
+J'ai créé un fichier `Makefile` pour automatiser le pipeline complet (préprocessing, entraînement, scoring) en une seule commande :
 
 ```bash
-bash run.sh
+make run
+```
+
+Pour voir l'intégralité des commandes disponibles :
+```bash
+make help
 ```
 
 ### 2. Mode Manuel (Étape par étape)
@@ -77,7 +81,7 @@ Si jamais vous souhaitez exécuter chaque étape séparément voici les commande
 **A. Téléchargement du Dataset**
 Télécharge le dataset depuis Kaggle si nécessaire.
 ```bash
-python src/import.py --output dataset/raw
+python src/import_dataset.py --output dataset/raw
 ```
 
 **B. Preprocessing**
