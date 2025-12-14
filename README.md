@@ -1,6 +1,8 @@
 # Détection de Fraude par Carte de Crédit avec PySpark
 
-Ce projet implémente un pipeline complet de Machine Learning distribué avec **Apache Spark (PySpark)** pour détecter les transactions frauduleuses. Le dataset utilisé est fortement déséquilibré (seulement ~0.17% de fraudes), ce qui nécessite des stratégies adaptées (pondération des classes, métriques robustes comme l'AUPRC).
+Ce projet implémente un pipeline complet de Machine Learning distribué avec **Apache Spark (PySpark)** pour détecter les transactions frauduleuses [(lien)](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud/data). 
+
+Le dataset utilisé est fortement déséquilibré (seulement ~0.17% de fraudes), ce qui nécessitera des stratégies adaptées qui seront détaillées dans le notebook.
 
 ## Fonctionnalités
 
