@@ -118,15 +118,14 @@ python src/score.py --model-dir models/gbt_pipeline --input dataset/processed/te
 
 Les modèles sont évalués principalement sur l'**Area Under Precision-Recall Curve (AUPRC)**, métrique plus adaptée que l'AUC-ROC pour les datasets très déséquilibrés.
 
-| Modèle | AUPRC | AUROC | Temps d'entraînement |
-|--------|-------|-------|----------------------|
-| **Logistic Regression** | ~0.68 | ~0.97 | Rapide |
-| **Random Forest** | ~0.83 | ~0.97 | Moyen |
-| **Gradient Boosted Trees** | **~0.85** | **~0.99** | Lent |
+| Modèle | AUPRC | AUROC |
+|--------|-------|-------|
+| **Logistic Regression** | ~0.68 | ~0.97 |
+| **Random Forest** | ~0.83 | ~0.97 |
+| **Gradient Boosted Trees** | **~0.85** | **~0.99** |
 
-> *Note : Les résultats peuvent varier légèrement selon le seed et le split des données.*
+> *Note : Les résultats peuvent varier légèrement selon la seed et le split des données.*
 
 ## Notebooks
 
 - **`cc_fraud_spark.ipynb`** : Notebook principal pour le développement. Contient le chargement, l'exploration, l'entraînement des variantes et l'export du meilleur modèle.
-- **`model_comparison_viz.ipynb`** : Charge les modèles entraînés et les prédictions pour générer des graphiques avancés (Confusion Matrix, Precision-Recall Curve) et ajuster le seuil de décision optimal.
